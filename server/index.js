@@ -14,7 +14,7 @@ const initializeDBAndServer = async () => {
     const username = encodeURIComponent("sumanborra");
     const password = encodeURIComponent("Suman@8978");
 
-    //  connection URI obtained from MongoDB Atlas
+   
     const uri = `mongodb+srv://${username}:${password}@suman.frnfj7m.mongodb.net/?retryWrites=true&w=majority&appName=suman`;
 
     client = new MongoClient(uri);
@@ -33,7 +33,7 @@ const initializeDBAndServer = async () => {
   
 initializeDBAndServer();
 
-// Middleware to authenticate JWT token
+
 const authenticateToken = (request, response, next) => {
     let jwtToken;
     const authHeader = request.headers["authorization"];
@@ -44,7 +44,7 @@ const authenticateToken = (request, response, next) => {
         response.status(401);
         response.send("Invalid JWT Token");
     } else {
-        //  JWT secret key
+       
         jwt.verify(jwtToken, "MY_SECRET_TOKEN", async (error, payload) => {
             if (error) {
                 response.status(401);
